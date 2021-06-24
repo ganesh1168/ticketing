@@ -9,7 +9,7 @@ const start = async () => {
   // if (!process.env.MONGO_URI) {
   //   throw new Error('MONGO_URI must be defined');
   // }
-
+  console.log('starting 3000');
   try {
     await mongoose.connect('mongodb://auth-mongo-srv:27017/auth', {
       useNewUrlParser: true,
