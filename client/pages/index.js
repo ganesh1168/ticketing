@@ -10,16 +10,16 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 
-const useStyles = makeStyles({
+const useSty ={
   table: {
-    minWidth: 650,
-    maxWidth:650
+    width: 650,
+   
   },
-});
+};
 
 const LandingPage = ({ currentUser, tickets }) => {
   
-   const classes = useStyles();
+  
 
   const ticketList = tickets.map((ticket) => {
     return (
@@ -49,7 +49,7 @@ const LandingPage = ({ currentUser, tickets }) => {
           Available Tickets
         </Typography>
       <TableContainer component={Paper}>
-        <Table className={classes.table} aria-label="simple table">
+        <Table style={useSty.table} aria-label="simple table">
           <TableHead>
             <TableRow>
               <TableCell><h5>Title</h5></TableCell>
