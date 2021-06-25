@@ -48,6 +48,7 @@ const LandingPage = ({ currentUser, tickets }) => {
        <Typography component="h1" variant="h5">
           Available Tickets
         </Typography>
+        <br></br>
       <TableContainer component={Paper}>
         <Table style={useSty.table} aria-label="simple table">
           <TableHead>
