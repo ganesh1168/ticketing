@@ -11,6 +11,7 @@ interface OrderAttrs {
   orderDate:Date;
   expiresAt: Date;
   ticket: TicketDoc;
+  paymentUrl?:string
 }
 
 interface OrderDoc extends mongoose.Document {
@@ -20,6 +21,7 @@ interface OrderDoc extends mongoose.Document {
   expiresAt: Date;
   ticket: TicketDoc;
   version: number;
+  paymentUrl?:string
 }
 
 interface OrderModel extends mongoose.Model<OrderDoc> {
@@ -50,6 +52,9 @@ const orderSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Ticket',
     },
+    paymentUrl:{
+      type:String
+    }
   },
   {
     toJSON: {

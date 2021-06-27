@@ -20,6 +20,7 @@ export class PaymentCreatedListener extends Listener<PaymentCreatedEvent> {
     }
 
     order.set({
+      paymentUrl:data.paymentUrl,
       status: OrderStatus.Complete,
     });
     await order.save();

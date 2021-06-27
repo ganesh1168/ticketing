@@ -43,7 +43,7 @@ const OrderIndex = ({ orders }) => {
 
               
               return (
-                   <ListItem component="a" href="https://pay.stripe.com/receipts/acct_1IxZpPSH7dQCxDkK/ch_1J5n76SH7dQCxDkKsFVBfwIg/rcpt_JjFcr5zBuDgYjDG1VAn97MNllYdzbkb">
+                   <ListItem component="a" href={order.paymentUrl}>
                       <ListItemAvatar>
                         <Avatar>
                           <LabelIcon />
@@ -58,7 +58,7 @@ const OrderIndex = ({ orders }) => {
                     
               );
           })}
-
+  
         </List>
 
     </div>

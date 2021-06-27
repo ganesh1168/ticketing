@@ -43,16 +43,21 @@ router.post(
       description:"Testing a collge software",
       source: token,
     });
-    console.log(charge.receipt_url)
     const payment = Payment.build({
       orderId,
       stripeId: charge.id,
     });
     await payment.save();
+    let paymentUrl='ddd'
+    if(charge.receipt_url)
+    {
+      paymentUrl=charge.receipt_url
+    }
     new PaymentCreatedPublisher(natsWrapper.client).publish({
       id: payment.id,
       orderid: payment.orderId,
       stripeId: payment.stripeId,
+      paymentUrl:paymentUrl
     });
 
     res.status(201).send({ id: payment.id });

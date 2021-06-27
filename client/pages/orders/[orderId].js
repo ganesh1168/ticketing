@@ -14,6 +14,12 @@ const OrderShow = ({ order, currentUser }) => {
     },
     onSuccess: () => Router.push('/orders'),
   });
+  // const { doRequest1, errors } = useRequest({
+  //   url: `/api/orders/{order.id}`',
+  //   method: 'delete',
+  //   
+  //   onSuccess: () => Router.push('/orders'),
+  // });
 
   useEffect(() => {
     console.log("enter into effect")
@@ -55,6 +61,7 @@ const OrderShow = ({ order, currentUser }) => {
         amount={order.ticket.price * 100}
         email={currentUser.email}
       />
+      
       {errors}
     </div>
   );
