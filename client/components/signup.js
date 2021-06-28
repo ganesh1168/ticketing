@@ -1,7 +1,6 @@
-/*import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Router from 'next/router';
-import useRequest from '../../hooks/use-request';
-import AddBoxIcon from '@material-ui/icons/AddBox';
+import useRequest from '../hooks/use-request';
 import React from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
@@ -12,6 +11,7 @@ import Checkbox from '@material-ui/core/Checkbox';
 import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
+import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
@@ -37,74 +37,63 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
+const SignUp=() => {
 
-
-const NewTicket = () => {
 
   const classes = useStyles();
-    
-  const [title, setTitle] = useState('');
-  const [price, setPrice] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const { doRequest, errors } = useRequest({
-    url: '/api/tickets',
+    url: '/api/users/signup',
     method: 'post',
     body: {
-      title,
-      price,
+      email,
+      password
     },
-    onSuccess: () => Router.push('/'),
+    onSuccess: () => Router.push('/')
   });
 
-  const onSubmit = (event) => {
+  const onSubmit = async event => {
     event.preventDefault();
 
-    doRequest();
-  };
-
-  const onBlur = () => {
-    const value = parseFloat(price);
-
-    if (isNaN(value)) {
-      return;
-    }
-
-    setPrice(value.toFixed(2));
+    await doRequest();
   };
 
   return (
-    // <div>
-    //   <h1>Create a Ticket</h1>
-    //   <form onSubmit={onSubmit}>
-    //     <div className="form-group">
-    //       <label>Title</label>
-    //       <input
-    //         value={title}
-    //         onChange={(e) => setTitle(e.target.value)}
-    //         className="form-control"
-    //       />
-    //     </div>
-    //     <div className="form-group">
-    //       <label>Price</label>
-    //       <input
-    //         value={price}
-    //         onBlur={onBlur}
-    //         onChange={(e) => setPrice(e.target.value)}
-    //         className="form-control"
-    //       />
-    //     </div>
-    //     {errors}
-    //     <button className="btn btn-primary">Submit</button>
-    //   </form>
-    // </div>
+    // <form onSubmit={onSubmit}>
+    //   <h1>Sign Up</h1>
+    //   <div className="form-group">
+    //     <label>Email Address</label>
+    //     <input
+    //       value={email}
+    //       onChange={e => setEmail(e.target.value)}
+    //       className="form-control"
+    //     />
+    //   </div>
+    //   <div className="form-group">
+    //     <label>Password</label>
+    //     <input
+    //       value={password}
+    //       onChange={e => setPassword(e.target.value)}
+    //       type="password"
+    //       className="form-control"
+    //     />
+    //   </div>
+    //   {errors}
+    //   <button className="btn btn-primary">Sign Up</button>
+    // </form>
 
+
+
+    
     <Container component="main" maxWidth="xs" >
       <CssBaseline />
       <div className={classes.paper}>
         <Avatar className={classes.avatar}>
-          <AddBoxIcon />
+          <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Create a Ticket
+          Sign Up
         </Typography>
         <form className={classes.form} noValidate onSubmit={onSubmit}>
           <TextField
@@ -112,24 +101,24 @@ const NewTicket = () => {
             margin="normal"
             required
             fullWidth
-            id="title"
-            label="Title"
-            name="title"
-            autoComplete="title"
+            id="email"
+            label="Email Address"
+            name="email"
+            autoComplete="email"
             autoFocus 
-            onChange={(e) => setTitle(e.target.value)}
+            onChange={(e) => setEmail(e.target.value)}
           />
           <TextField
             variant="outlined"
             margin="normal"
             required
             fullWidth
-            name="price"
-            label="Price"
-            id="price"
-            autoComplete="price"
-            onBlur={onBlur}
-            onChange={(e) => setPrice(e.target.value)}
+            name="password"
+            label="Password"
+            type="password"
+            id="password"
+            autoComplete="current-password"
+            onChange={(e) => setPassword(e.target.value)}
           />
 
 
@@ -141,23 +130,14 @@ const NewTicket = () => {
             color="primary"
             className={classes.submit}
           >
-            Sell
+            Sign Up
           </Button>
           
         </form>
       </div>
     </Container>
 
-
+ 
   );
 };
-
-export default NewTicket;
-*/
-
-import dynamic from 'next/dynamic'
-const DynamicComponent = dynamic(() => import('../../components/newticket'), { ssr: false })
-export default DynamicComponent;
-
-
-
+export default SignUp;

@@ -1,6 +1,6 @@
-/*import { useState } from 'react';
+import { useState } from 'react';
 import Router from 'next/router';
-import useRequest from '../../hooks/use-request';
+import useRequest from '../hooks/use-request';
 import AddBoxIcon from '@material-ui/icons/AddBox';
 import React from 'react';
 import Avatar from '@material-ui/core/Avatar';
@@ -16,7 +16,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles( (theme) => ({
   paper: {
     marginTop: theme.spacing(8),
     display: 'flex',
@@ -153,11 +153,3 @@ const NewTicket = () => {
 };
 
 export default NewTicket;
-*/
-
-import dynamic from 'next/dynamic'
-const DynamicComponent = dynamic(() => import('../../components/newticket'), { ssr: false })
-export default DynamicComponent;
-
-
-

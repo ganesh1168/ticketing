@@ -115,7 +115,7 @@ const UpdateTicket = ({ticket}) => {
             fullWidth
             id="title"
             value={ttle}
-            readOnly
+            disabled
           />
           <TextField
             variant="outlined"
@@ -153,9 +153,8 @@ const UpdateTicket = ({ticket}) => {
 };
 UpdateTicket.getInitialProps = async (context, client) => {
    const { updateticketId } = context.query;
-  // console.log("contextssssss     "+context.query)
-  //const ticketId="60d06e7318c82c0018eef4a8"
-  console.log(context)
+   console.log("gannig")
+ // console.log(context+"Ddd")
    const { data } = await client.get(`/api/tickets/${updateticketId}`);
   
    return { ticket: data,};
