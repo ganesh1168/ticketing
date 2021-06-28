@@ -1,11 +1,21 @@
 import { useEffect, useState } from 'react';
 import StripeCheckout from 'react-stripe-checkout';
 import Router from 'next/router';
+import Button from "@material-ui/core/Button";
 
 import useRequest from '../../hooks/use-request';
 
 const OrderShow = ({ order, currentUser }) => {
   const [timeLeft, setTimeLeft] = useState(0);
+
+  const Cancel = useRequest({
+    url: `/api/orders/${order.id}`,
+    method: 'delete',
+    body: {
+    },
+    onSuccess: () => Router.push('/orders'),
+  });
+
   const { doRequest, errors } = useRequest({
     url: '/api/payments',
     method: 'post',
@@ -61,6 +71,8 @@ const OrderShow = ({ order, currentUser }) => {
         amount={order.ticket.price * 100}
         email={currentUser.email}
       />
+      <br></br><br></br>
+      <Button variant="contained" color="secondary"  onClick={() => Cancel.doRequest()}> Cancel</Button>
       
       {errors}
     </div>

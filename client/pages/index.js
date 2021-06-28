@@ -30,9 +30,13 @@ const LandingPage = ({ currentUser, tickets }) => {
                 </TableCell>
                 <TableCell align="right">{ticket.price}</TableCell>
                 <TableCell align="right">
+                  {
+                    ticket.userId!=currentUser?.id ?
                     <Link href="/tickets/[ticketId]" as={`/tickets/${ticket.id}`}>
                       View
-                    </Link>
+                    </Link>:
+                     <label style={{opacity:0.6}}>View</label>
+                  }
                 </TableCell>
               </TableRow>
      
@@ -79,7 +83,7 @@ const LandingPage = ({ currentUser, tickets }) => {
 LandingPage.getInitialProps = async (context, client, currentUser) => {
 
   const { data } = await client.get('/api/tickets');
-
+  console.log(data)
   return { tickets: data ,currentUser};
 };
 

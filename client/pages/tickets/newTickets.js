@@ -19,7 +19,7 @@ const useStyles = {
 
 const TicketsPage = ({ currentUser, tickets }) => {
 
-//   const classes = useStyles();
+  // const classes = useStyles();
   const ticketList = tickets.map((ticket) => {
     return (
       // <tr key={ticket.id}>

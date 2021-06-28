@@ -16,32 +16,29 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = {
   paper: {
-    marginTop: theme.spacing(8),
+    // marginTop: theme.spacing(8),
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
   },
   avatar: {
-    margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
+    // margin: theme.spacing(1),
+    // backgroundColor: theme.palette.secondary.main,
   },
   form: {
     width: '100%', // Fix IE 11 issue.
-    marginTop: theme.spacing(1),
+    // marginTop: theme.spacing(1),
   },
   submit: {
-    margin: theme.spacing(3, 0, 2),
+    // margin: theme.spacing(3, 0, 2),
   },
-}));
-
-
-
+};
 
 const NewTicket = () => {
 
-  const classes = useStyles();
+  // const classes = useStyles();
     
   const [title, setTitle] = useState('');
   const [price, setPrice] = useState('');
@@ -72,41 +69,17 @@ const NewTicket = () => {
   };
 
   return (
-    // <div>
-    //   <h1>Create a Ticket</h1>
-    //   <form onSubmit={onSubmit}>
-    //     <div className="form-group">
-    //       <label>Title</label>
-    //       <input
-    //         value={title}
-    //         onChange={(e) => setTitle(e.target.value)}
-    //         className="form-control"
-    //       />
-    //     </div>
-    //     <div className="form-group">
-    //       <label>Price</label>
-    //       <input
-    //         value={price}
-    //         onBlur={onBlur}
-    //         onChange={(e) => setPrice(e.target.value)}
-    //         className="form-control"
-    //       />
-    //     </div>
-    //     {errors}
-    //     <button className="btn btn-primary">Submit</button>
-    //   </form>
-    // </div>
 
     <Container component="main" maxWidth="xs" >
       <CssBaseline />
-      <div className={classes.paper}>
-        <Avatar className={classes.avatar}>
+      <div style={useStyles.paper}>
+        <Avatar style={useStyles.avatar}>
           <AddBoxIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
           Create a Ticket
         </Typography>
-        <form className={classes.form} noValidate onSubmit={onSubmit}>
+        <form style={useStyles.form} noValidate onSubmit={onSubmit}>
           <TextField
             variant="outlined"
             margin="normal"
@@ -139,7 +112,7 @@ const NewTicket = () => {
             fullWidth
             variant="contained"
             color="primary"
-            className={classes.submit}
+            style={useStyles.submit}
           >
             Sell
           </Button>
