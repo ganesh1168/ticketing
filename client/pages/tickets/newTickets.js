@@ -10,16 +10,16 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 
-const useStyles = makeStyles({
+const useStyles = {
   table: {
     minWidth: 650,
     maxWidth:650
   },
-});
+};
 
 const TicketsPage = ({ currentUser, tickets }) => {
 
-  const classes = useStyles();
+  // const classes = useStyles();
   const ticketList = tickets.map((ticket) => {
     return (
       // <tr key={ticket.id}>
@@ -47,7 +47,7 @@ const TicketsPage = ({ currentUser, tickets }) => {
                       <Link href="/tickets/Dated/[updateticketId]" as={`/tickets/Dated/${ticket.id}`} >
                         <a >Update</a>
                       </Link>:
-                      <label style={{opacity:0.6}}>Update</label>
+                      <label style={{opacity:0.6}}>Reserved</label>
                     }
                 </TableCell>
               </TableRow>
@@ -62,7 +62,7 @@ const TicketsPage = ({ currentUser, tickets }) => {
           My Tickets
         </Typography>
       <TableContainer component={Paper}>
-        <Table className={classes.table} aria-label="simple table">
+        <Table style={useStyles.table} aria-label="simple table">
           <TableHead>
             <TableRow>
               <TableCell><h5>Title</h5></TableCell>

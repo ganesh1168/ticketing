@@ -15,7 +15,7 @@ import AttachMoneyIcon from "@material-ui/icons/AttachMoney";
 import Button from "@material-ui/core/Button";
 
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = {
   root: {
     maxWidth: 345
   },
@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
   avatar: {
     backgroundColor: red[500]
   }
-}));
+};
 
 
 const TicketShow = ({ ticket }) => {
@@ -39,7 +39,7 @@ const TicketShow = ({ ticket }) => {
     onSuccess: (order) =>
       Router.push('/orders/[orderId]', `/orders/${order.id}`),
   });
-  const classes = useStyles();
+  // const classes = useStyles();
 
   return (
     // <div>
@@ -51,17 +51,17 @@ const TicketShow = ({ ticket }) => {
     //   </button>
     // </div>
     <div align="center">
-        <Card className={classes.root}>
+        <Card style={useStyles.root}>
           <CardHeader
             avatar={
-              <Avatar aria-label="recipe" className={classes.avatar}>
+              <Avatar aria-label="recipe" style={useStyles.avatar}>
                 T
               </Avatar>
             }
             title={ticket.title}
           />
           <CardMedia
-            className={classes.media}
+            style={useStyles.media}
             image="https://nextbigtechnology.com/wp-content/uploads/2018/01/event-tickets.jpg"
             title="Ticket"
           />
@@ -78,7 +78,7 @@ const TicketShow = ({ ticket }) => {
           </CardContent>
         </Card>
 
-        <div className={classes.root}>
+        <div style={useStyles.root}>
           {errors}
         </div>
      </div>
