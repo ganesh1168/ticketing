@@ -10,18 +10,19 @@ import Typography from '@material-ui/core/Typography';
 import Link from 'next/link';
 
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = {
   root: {
     width: "100%",
     maxWidth: 360,
-    backgroundColor: theme.palette.background.paper
+    
+  
   }
-}));
+};
 
 
 const OrderIndex = ({ orders }) => {
 
-   const classes = useStyles();
+ 
 
   return (
     // <ul>
@@ -38,12 +39,13 @@ const OrderIndex = ({ orders }) => {
        <Typography component="h1" variant="h5">
           My Orders
         </Typography>
-        <List className={classes.root}>
+        <List style={useStyles.root}>
           {orders.map((order) => {
 
               
               return (
-                   <ListItem component="a" href={order.paymentUrl}>
+                order.paymentUrl?
+                   <ListItem component="a" href={order.paymentUrl} target="_blank">
                       <ListItemAvatar>
                         <Avatar>
                           <LabelIcon />
@@ -54,7 +56,20 @@ const OrderIndex = ({ orders }) => {
                       <ListItemText button primary="Receipt"
                       
                       />
-                    </ListItem>
+                    </ListItem>:
+                     <ListItem >
+                     <ListItemAvatar>
+                       <Avatar>
+                         <LabelIcon />
+                       </Avatar>
+                     </ListItemAvatar>
+                     <ListItemText primary={order.ticket.title + " - " + order.status} secondary= {order.orderDate}/>
+                   
+                     <ListItemText button primary="No receipt"
+                     
+                     />
+                   </ListItem>
+
                     
               );
           })}
